@@ -89,7 +89,7 @@ readStream.on('end', async function()
     {
     console.log(data);
     var subscribtionhashtable = {};
-    var webhookist = new Array();
+    var webhooklist = new Array();
     //check if data is empty
     if (data === "") 
     {
@@ -105,12 +105,12 @@ readStream.on('end', async function()
         {
             webhooklist = subscribtionhashtable[topic];
 
-            //Because the subscribers can be a lot for a topic,
-            //Get a subcribers and split in batches of 20
+            //Because there could be many subscribers for a topic, use parallel programming approach to broadcast
+            //Get all subcribers and split in batches of 20
             var webhooklistcount = webhooklist.length;
             var lastindex = webhooklistcount - 1;
             var batchsize = 20;
-            var iterationcount = webhookistcount/batchsize;
+            var iterationcount = webhooklistcount/batchsize;
             const brodcastevent = fork('webhooktransmitter.js');
             //For each batch spin a child process to handle the broadcasting to each subscriber
             for(var i = 0; i < iterationcount; i++)
