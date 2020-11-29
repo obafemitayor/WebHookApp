@@ -1,2 +1,2 @@
 # WebHookApp
-A Simple Web Hook Appication
+A Simple Web Hook Application
