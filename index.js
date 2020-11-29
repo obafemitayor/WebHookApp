@@ -28,15 +28,15 @@ readStream.on('end', async function()
     //create hashtable variable
     var subscribtionhashtable = {};
     //create webhookist array
-    var webhookist = new Array();
+    var webhooklist = new Array();
     //check if data is empty
     if (data === "") 
     {
         //Data is empty
         //push url to webhookist
-        webhookist.push(req.body.url);
+        webhooklist.push(req.body.url);
         //add topic to the hashtable and assign webhooklist as its value
-        subscribtionhashtable[topic] = webhookist;
+        subscribtionhashtable[topic] = webhooklist;
     }
     else
     {
@@ -46,19 +46,19 @@ readStream.on('end', async function()
         if(topic in obj)
         {
             //topic exist, get webhooklist value
-            webhookist = subscribtionhashtable[topic];
+            webhooklist = subscribtionhashtable[topic];
             //add url to list
-            webhookist.push(req.body.url);
+            webhooklist.push(req.body.url);
             //update topic in hashtable
-            subscribtionhashtable[topic] = webhookist;
+            subscribtionhashtable[topic] = webhooklist;
         }
         else
         {
             //topic does not exist
             //populate list
-            webhookist.push(req.body.url);
+            webhooklist.push(req.body.url);
             //create topic in hashtabe
-            subscribtionhashtable[topic] = webhookist;
+            subscribtionhashtable[topic] = webhooklist;
         }
     }
     //Stringify New HashTable
