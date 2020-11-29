@@ -105,7 +105,7 @@ readStream.on('end', async function()
         {
             webhooklist = subscribtionhashtable[topic];
 
-            //Because the subscribers can be a ot for a topic,
+            //Because the subscribers can be a lot for a topic,
             //Get a subcribers and split in batches of 20
             var webhooklistcount = webhooklist.length;
             var lastindex = webhooklistcount - 1;
